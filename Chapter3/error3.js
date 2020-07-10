@@ -8,4 +8,4 @@ setInterval(() => {
 
 setTimeout(()=> {
     console.log('실행됩니다');
-}, 2000 )
+}, 2000 );

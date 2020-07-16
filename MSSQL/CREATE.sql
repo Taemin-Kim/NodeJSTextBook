@@ -1,5 +1,5 @@
 
-CREATE SCHEMA nodejs(SSMS 사용하여 생성)
+--CREATE SCHEMA nodejs(SSMS 사용하여 생성)
 
 CREATE TABLE users (
 id INT NOT NULL IDENTITY(1,1),
@@ -13,5 +13,5 @@ PRIMARY KEY(id))
 CREATE UNIQUE INDEX name_UNIQUE ON users(name asc)
 
 
-걍 여기봐라
-https://rocabilly.tistory.com/215 
+--걍 여기봐라
+--https://rocabilly.tistory.com/215 

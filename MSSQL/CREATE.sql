@@ -1,3 +1,6 @@
+
+CREATE SCHEMA nodejs(SSMS 사용하여 생성)
+
 CREATE TABLE users (
 id INT NOT NULL IDENTITY(1,1),
 name NVARCHAR(20) NOT NULL,

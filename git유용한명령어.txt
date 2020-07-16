@@ -1,0 +1,22 @@
+git init : 깃 초기 생성시
+
+git add -A : 모든파일 생성
+
+[Git] git ignore 특정 파일또는 폴더 제외 or 무시하기
+출처: https://kcmschool.com/194 [web sprit]
+
+git bracnh --vv : 브랜치 설정목록 보기(마지막으로 커밋된 것과 자세한 사항을 볼수있음)
+
+//깃 자동 추적 브랜치 생성
+$ git checkout --track origin/serverfix
+Branch serverfix set up to track remote branch serverfix from origin.
+Switched to a new branch 'serverfix'
+이 명령은 매우 자주 쓰여서 더 생략할 수 있다. 입력한 브랜치가 있는 (a) 리모트가 딱 하나 있고 (b) 로컬에는 없으면 Git은 트래킹 브랜치를 만들어 준다.
+$ git checkout serverfix
+
+$ git checkout -b sf origin/serverfix
+Branch sf set up to track remote branch serverfix from origin.
+Switched to a new branch 'sf'
+
+//브랜치 생성과 같이 추적
+git checkout -b process_b origin/mastercre

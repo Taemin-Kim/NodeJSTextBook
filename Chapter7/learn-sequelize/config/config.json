@@ -1,10 +1,11 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mssql",
+    "username": "KTM_test",
+    "password": "KTM_test",
+    "database": "nodejs",
+    "host": "localhost",
+    "port": 1433
   },
   "test": {
     "username": "root",

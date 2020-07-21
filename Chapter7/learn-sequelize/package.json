@@ -12,6 +12,7 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "mssql": "^6.2.0",
+    "nunjucks": "^3.2.1",
     "pug": "2.0.0-beta11",
     "sequelize": "^6.3.3"
   }

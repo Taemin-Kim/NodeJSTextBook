@@ -9,12 +9,7 @@ var flash = require('connect-flash');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-
 var app = express();
-
-
-
-
 
 
 // view engine setup
@@ -30,7 +25,6 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-<<<<<<< HEAD
 // app.use(cookieParser());
 app.use(cookieParser('secret code')); // 서명된 쿠키가 있는경우 제공한 문자열을 키로 삼아 복호화 가능 클라이언트가 서명된 쿠키를 임의로 수정할경우 클라는 에러 발생
 

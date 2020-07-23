@@ -5,7 +5,7 @@
     "database": "nodebird",
     "host": "127.0.0.1",
     "dialect": "mssql",
-    "port": 1433
+    "port": 10315
   },
   "test": {
     "username": "root",

@@ -8,8 +8,10 @@ const passport = require('passport');
 require('dotenv').config();
 
 const pageRouter = require('./routes/page');
+const authRouter = require('./routes/auth');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
+
 
 const app = express();
 sequelize.sync({ force: false })
@@ -44,6 +46,7 @@ app.use(passport.initialize()); //패스포트 설정을 심는 역할
 app.use(passport.session());    //passport를 req.session 객체의 정보 저장
 
 app.use('/', pageRouter);
+app.use('/auth', authRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');

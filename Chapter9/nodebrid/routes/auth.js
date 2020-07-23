@@ -6,6 +6,18 @@ const { User } = require("../models");
 
 const router = express.Router();
 
+//카카오 로그인 라우터
+router.get('/kakao', passport.authenticate('kakao'));
+
+router.get('/kakao/callback', passport.authenticate('kakao', {
+  failureRedirect: '/',
+}), (req,res) => {
+  res.redirect('/');
+});
+
+
+
+
 router.post("/join", isNotLoggedIn, async (req, res, next) => {
   const { email, nick, password } = req.body;
   try {
@@ -53,7 +65,10 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
 router.get('/logout', isLoggedIn, (req, res) => {
     req.logout();
     req.session.destroy();
-    req.redirect('/');
+    res.redirect('/');
 });
+
+
+
 
 module.exports = router;

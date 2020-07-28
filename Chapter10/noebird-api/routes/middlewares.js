@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { EmptyResultError } = require('sequelize/types');
 
 exports.isLoggedIn = (req, res, next) => {
     if(req.isAuthenticated()){
@@ -18,7 +17,7 @@ exports.isNotLoggedIn = (req, res, next) =>{
     }
 }
 
-exports.verifyToken =  (req, res, next) => {
+exports.verifyToken = (req, res, next) => {
     try {
         req.decoded = jwt.verify = (req.headers.authorization, process.env.JWT_SECRET); //디코디드는 그냥 변수임
         return next();
@@ -29,7 +28,7 @@ exports.verifyToken =  (req, res, next) => {
             code:419,
             message: '토큰 만료',
         });
-    }ㄴ
+    }
     return res.status(401).json({
         code: 401,
         message: '유효하지 않은 토큰',

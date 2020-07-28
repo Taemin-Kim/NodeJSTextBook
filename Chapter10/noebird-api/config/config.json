@@ -4,7 +4,8 @@
     "password": "KTM_test",
     "database": "nodebird",
     "host": "127.0.0.1",
-    "dialect": "mssql"
+    "dialect": "mssql",
+    "port" : 10315
   },
   "test": {
     "username": "root",

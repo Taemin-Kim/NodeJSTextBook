@@ -11,8 +11,8 @@ const router = express.Router();
 
 router.use(async (req, res ,next) => {
 
-  console.log(req.get('origin'));
-  console.log(url.parse(req.get('origin')).host);
+  console.log(req.get('origin')); //url
+  console.log(url.parse(req.get('origin')).host);//url 분해해서 도메인중에 있는애만 줌
   const domain = await Domain.findOne({
    where : {host: url.parse(req.get('origin')).host}
   });

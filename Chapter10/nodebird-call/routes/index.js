@@ -2,15 +2,15 @@ const express = require('express');
 const axios = require('axios');
 
 const router = express.Router();
-const URL = 'http://localhost:8002/v1';
+const URL = 'http://localhost:8002/v2';
 
 axios.defaults.headers.origin = 'http://localhost:8003'
 const request = async (req, api) => {
   try {
-
     console.log(req.session.jwt);
     if (!req.session.jwt) {
       //세션에 토큰이 없을시
+     
       const tokenResult = await axios.post(`${URL}/token`, {
         clientSecret: process.env.CLIENT_SECRET,
       });
@@ -25,7 +25,7 @@ const request = async (req, api) => {
     return axios_result;
   
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     if (error.response.status < 500) {
       return error.response;
     }
@@ -63,7 +63,7 @@ router.get('/test', async (req, res, next) => {
   try {
     if (!req.session.jwt) {
       // 세션에 토큰이없으면
-      const tokenResult = await axios.post('http://localhost:8002/v1/token', {
+      const tokenResult = await axios.post(`${URL}/token`, {
         clientSecret: process.env.CLIENT_SECRET,
       });
 
@@ -76,7 +76,7 @@ router.get('/test', async (req, res, next) => {
         return res.json(tokenResult.data); //발급 실패 사유 응답
       }
     }
-    const result = await axios.get('http://localhost:8002/v1/test', {
+    const result = await axios.get(`${URL}/test`, {
       headers: { authorization: req.session.jwt },
     });
     return res.json(result.data);
@@ -88,6 +88,11 @@ router.get('/test', async (req, res, next) => {
     }
     return next(error);
   }
+});
+
+
+router.get('/', (req, res) => {
+  res.render('main', { key: process.env.CLIENT_SECRET});
 });
 
 module.exports = router;

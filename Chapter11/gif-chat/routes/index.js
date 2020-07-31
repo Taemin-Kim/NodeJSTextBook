@@ -2,8 +2,14 @@ const express = require('express');
 
 const Room = require('../schemas/room');
 const Chat = require('../schemas/chat');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+const db = require('../../../Chapter9/nodebrid/models');
+
 
 const router = express.Router();
+
 
 router.get('/', async (req, res, next) => {
     try {
@@ -62,10 +68,12 @@ router.get('/room/:id', async(req, res, next) => {
             return res.redirect('/');
         }
 
+        const chats = await Chat.find({room: room._id}).sort('createdAt');
+
         return res.render('chat', {
             room,
             title: room.title,
-            chats: [],
+            chats: chats,
             user: req.session.color,
         });
     } catch (error) {
@@ -88,8 +96,59 @@ router.delete('/room/:id', async(req, res, next) => {
         console.error(error);
         next(error);
     }
+});
+
+router.post('/room/:id/chat', async (req, res, next) => {
+    try {
+        const chat = new Chat({
+            room: req.params.id,
+            user: req.session.color,
+            chat: req.body.chat
+        });
+        await chat.save();
+        req.app.get('io').of('/chat').to(req.params.id).emit('chat', chat);
+        res.send('ok');
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
+});
+
+fs.readdir('uploads', (error) => {
+    if(error) {
+        console.error(error);
+        fs.mkdirSync('uploads');
+    }
+});
+
+const uploads = multer({
+    storage: multer.diskStorage({
+        destination(req, file, cb){
+            cb(null, 'uploads/');
+        },
+        filename(req, file, cb) {
+            const ext = path.extname(file.originalname);
+            cb(null, path.basename(file.originalname, ext) + Date.now() + ext);
+        },
+    }),
+    limits: { fileSize: 5 * 1024 * 1024 },
 })
 
+router.post('/room/:id/gif', uploads.single('gif'), async (req, res, next) => {
+    try {
 
+        const chat = new Chat({
+            room: req.params.id,
+            user: req.session.color,
+            gif: req.file.filename, 
+        });
+        await chat.save();
+        req.app.get('io').of('/chat').to(req.params.id).emit('chat', chat);
+        res.send('ok');
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
+});
 
 module.exports = router;

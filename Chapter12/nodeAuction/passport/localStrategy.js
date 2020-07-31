@@ -23,6 +23,7 @@ module.exports = (passport) => {
             }
         } catch (error) {
             console.error(error);
+            done(error);
         }
-    }))
-}
+    }));
+};

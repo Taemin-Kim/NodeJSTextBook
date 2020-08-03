@@ -1,5 +1,5 @@
-module.exports = (sequelize, Sequelize) => {
-  sequelize.define(
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define(
     'auction',
     {
       bid: {

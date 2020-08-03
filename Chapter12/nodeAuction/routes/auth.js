@@ -58,3 +58,6 @@ router.post("/join", isNotLoggedIn, async (req, res, next) => {
       res.redirect('/');
   });
   
+
+
+  module.exports = router

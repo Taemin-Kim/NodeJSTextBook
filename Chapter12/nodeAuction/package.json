@@ -4,7 +4,7 @@
   "description": "노드 JS 기반 경매 시스템 개발",
   "main": "app.js",
   "scripts": {
-    "start" : "nodemon app",
+    "start": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "KTM",
@@ -22,7 +22,9 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pug": "^3.0.0",
-    "sequelize": "^6.3.3"
+    "sequelize": "^6.3.3",
+    "socket.io": "^2.3.0",
+    "sse": "0.0.8"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
-    sequelize.define('define', {
+   return sequelize.define('user', {
         email: {
-            type: DataTypes.STIRNG(40),
+            type: DataTypes.STRING(40),
             allowNull: false,
             unique: true,
         },
@@ -10,15 +10,16 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         password: {
-            type: DataTypes.STIRNG(100),
-            allowNull:tue,
+            type: DataTypes.STRING(100),
+            allowNull: true,
         },
         money: {
-            type: DataTypes.INTERGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
-            defaultValue: 0,
+            defaultVaule: 0,
         },
-    },{
+    },
+    {
         timestamps: true,
         paranoid: true,
     });

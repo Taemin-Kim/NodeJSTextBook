@@ -11,7 +11,8 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
-
+const sse = require('./sse');
+const webSocket = require('./socket');
 
 const app = express();
 sequelize.sync({ force: false })
@@ -52,7 +53,7 @@ app.use(sessionMiddleware);
 app.use(passport.initialize()); //패스포트 설정을 심는 역할
 app.use(passport.session());    //passport를 req.session 객체의 정보 저장
 
-app.use('/', pageRouter);
+app.use('/', indexRouter);
 app.use('/auth', authRouter);
 
 app.use((req, res, next) => {
@@ -68,6 +69,11 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-app.listen(app.get('port'), () => {
+const server = app.listen(app.get('port'), () => {
   console.log(app.get('port'), '번 포트에서 대기중');
 });
+
+console.log(server);
+
+webSocket(server,app);
+sse(server);

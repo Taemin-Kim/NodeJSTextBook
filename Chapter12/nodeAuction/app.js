@@ -13,6 +13,7 @@ const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 const sse = require('./sse');
 const webSocket = require('./socket');
+const checkAuction = require('./checkAuction');
 
 const app = express();
 sequelize.sync({ force: false })
@@ -23,6 +24,7 @@ sequelize.sync({ force: false })
     console.error(err);
   });
 passportConfig(passport);
+checkAuction();
 
 const sessionMiddleware = session({
     resave: false,

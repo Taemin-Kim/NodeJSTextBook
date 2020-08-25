@@ -4,21 +4,20 @@
     "password": "KTM_test",
     "database": "nodeauction",
     "host": "127.0.0.1",
-    "dialect": "mssql",
-    "port": 10315
+    "dialect": "mssql"
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mssql"
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mssql"
   }
 }
